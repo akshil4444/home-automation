@@ -65,7 +65,7 @@
                </button>
                <!-- lOGO TEXT HERE -->
                <a href="index.html" class="navbar-brand"><span class="font-playfair">Akshil </span> Shah</span>
-			   <span class="font-playfair">Home </span> automation </span></a>
+			   </a>
 
           </div>
 
@@ -86,34 +86,47 @@
 
                <div class="col-md-12 col-sm-12">
                     <div class="home-thumb">
-					<form action="a.php" method="POST" ">
-				<div align="left" class="col-md-10">
-					               <input type="submit" class="form-control" value="All off" name="alloff">
-				</div>
+					<form action="index.php" method="POST" ">
+        				<div align="left" class="col-md-10">
+        					  <input type="submit" class="form-control" value="Party time" name="allon">
+        				</div>
 
-					<div class="col-md-6 col-sm-4" >
-                                   <input type="submit" class="form-control" value="Main Room Light On" name="mainroomon"  >
-                              </div>
-							  <div class="col-md-4 col-sm-6">
-                                   <input type="submit" class="form-control" value="Main room light off" name="mainroomoff" >
+          					<div class="col-md-6 col-sm-4" >
+                          <input type="submit" class="form-control" value="Main Room Light On" name="led1on"  >
+                    </div>
 
-                              </div>
+							     <div class="col-md-4 col-sm-6">
+                          <input type="submit" class="form-control" value="Main room light off" name="led1off" >
 
-
-                                <div class="col-md-6 col-sm-6" >
-                                   <input type="submit" class="form-control" value="Children room light on" name="childrenroomon" >
-                              </div>
-							  <div class="col-md-4 col-sm-6">
-                                   <input type="submit" class="form-control" value="Children room light off" name="childrenroomoff">
-                              </div>
+                    </div>
 
 
-<div class="col-md-6 col-sm-6" >
-                                   <input type="submit" class="form-control" value="Drawing room light on " name="drawingroomon" >
-                              </div>
-							  <div class="col-md-4 col-sm-6">
-                                   <input type="submit" class="form-control" value="Drawing room light on" name="drawing room off ">
-                              </div>
+                    <div class="col-md-6 col-sm-6" >
+                          <input type="submit" class="form-control" value="Children room light on" name="led2on" >
+                    </div>
+
+							      <div class="col-md-4 col-sm-6">
+                           <input type="submit" class="form-control" value="Children room light off" name="led2off">
+                    </div>
+
+
+                    <div class="col-md-6 col-sm-6" >
+                                   <input type="submit" class="form-control" value="Drawing room light on " name="led3on" >
+                     </div>
+							       <div class="col-md-4 col-sm-6">
+                                   <input type="submit" class="form-control" value="Drawing room light off" name="led3off ">
+                     </div>
+
+                     <div class="col-md-6 col-sm-6" >
+                                   <input type="submit" class="form-control" value="Kitchen Room light on " name="led4on" >
+                     </div>
+                     <div class="col-md-4 col-sm-6">
+                                   <input type="submit" class="form-control" value="Kitchen room light on" name="led4off ">
+                     </div>
+
+                     <div align="left" class="col-md-10">
+                    <input type="submit" class="form-control" value="Good Night" name="alloff">
+                </div>
 
 										</div>
 
@@ -128,23 +141,58 @@
 </section>
          <?php
          $setmode17 = shell_exec("/usr/local/bin/gpio -g mode 17 out");
-         if(isset($_GET['mainroomon'])){
-                 $gpio_mainroomon = shell_exec("/usr/local/bin/gpio -g write 17 1");
-                 echo "LED is on";
+         if(isset($_GET['led1on'])){
+                 $gpio_led1on = shell_exec("/usr/local/bin/gpio -g write 17 1");
+                 echo "LED of mainroom is off";
          }
-         else if(isset($_GET['mainroomoff'])){
-                 $gpio_mainroomoff = shell_exec("/usr/local/bin/gpio -g write 17 0");
-                 echo "LED is off";
+         else if(isset($_GET['led1off'])){
+                 $gpio_led1off = shell_exec("/usr/local/bin/gpio -g write 17 0");
+                 echo "LED of mainroom is off";
          }
          $setmode24 = shell_exec("/usr/local/bin/gpio -g mode 24 out");
-         if(isset($_GET['onl1'])){
-                 $gpio_onl1 = shell_exec("/usr/local/bin/gpio -g write 24 1");
-                 echo "LED is on l1";
+         if(isset($_GET['led2on'])){
+                 $gpio_led2on = shell_exec("/usr/local/bin/gpio -g write 24 1");
+                 echo "LED of childrenroom is on ";
          }
-         else if(isset($_GET['offl1'])){
-                 $gpio_offl1 = shell_exec("/usr/local/bin/gpio -g write 24 0");
-                 echo "LED is off l1";
+         else if(isset($_GET['led2off'])){
+                 $gpio_led2off = shell_exec("/usr/local/bin/gpio -g write 24 0");
+                 echo "LED of childrenroom is off";
          }
+
+         $setmode14 = shell_exec("/usr/local/bin/gpio -g mode 14 out");
+         if(isset($_GET['led3on'])){
+                 $gpio_led3on = shell_exec("/usr/local/bin/gpio -g write 14 1");
+                 echo "Drawing room light on";
+         }
+         else if(isset($_GET['led3off'])){
+                 $gpio_led3off = shell_exec("/usr/local/bin/gpio -g write 14 0");
+                 echo "Drawing room light off ";
+         }
+
+         $setmode18 = shell_exec("/usr/local/bin/gpio -g mode 18 out");
+         if(isset($_GET['led4on'])){
+                 $gpio_led4on = shell_exec("/usr/local/bin/gpio -g write 18 1");
+                 echo "Kitchen room light on";
+         }
+         else if(isset($_GET['led4off'])){
+                 $gpio_led4off = shell_exec("/usr/local/bin/gpio -g write 18 0");
+                 echo "Kitchen room light off ";
+         }
+
+         if(isset($_GET['allon'])){
+                 $gpio_led4on = shell_exec("/usr/local/bin/gpio -g write 18 1");
+                 $gpio_led3on = shell_exec("/usr/local/bin/gpio -g write 18 1");
+                 $gpio_led2on = shell_exec("/usr/local/bin/gpio -g write 18 1");
+                 $gpio_led1on = shell_exec("/usr/local/bin/gpio -g write 18 1");
+                 echo "Lets Party!";
+         } 
+
+         if(isset($_GET['alloff'])){
+                 $gpio_led4off = shell_exec("/usr/local/bin/gpio -g write 18 0");
+                 $gpio_led3off = shell_exec("/usr/local/bin/gpio -g write 18 0");
+                 $gpio_led2off = shell_exec("/usr/local/bin/gpio -g write 18 0");
+                 $gpio_led1off = shell_exec("/usr/local/bin/gpio -g write 18 0");
+                 echo "Good night! ";
          ?>
 
 
